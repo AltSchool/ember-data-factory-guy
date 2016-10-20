@@ -2,6 +2,10 @@ import FactoryGuy from 'ember-data-factory-guy';
 
 FactoryGuy.define('dog', {
   default: {
-    name: 'Text goes here',
-  },
+    dogNumber: (f)=> `Dog${f.id}`,
+    sound: (f) => `${f.volume || defaultVolume} Woof`,
+    tag: (f) => {
+      return { num: f.id };
+    }
+  }
 });

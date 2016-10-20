@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
+export default Model.extend({
+  dogNumber: attr('string'),
+  sound: attr('string'),
+  tag: attr() // hash
 });
 

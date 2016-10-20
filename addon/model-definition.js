@@ -38,10 +38,22 @@ class ModelDefinition {
    @param {String} field  field you want to check
    @returns {Boolean} true if it's a model fragment
    */
-  isModelFragmentAttribute(field) {
-    let modelClass = FactoryGuy.store.modelFor(this.modelName);
-    let attributeInfo = Ember.get(modelClass, 'attributes').get(field);
-    return (attributeInfo && attributeInfo.type.match('mf-fragment'));
+  isModelFragmentAttribute(attribute) {
+    let info = this.modelFragmentInfo(attribute);
+    return !!(info && info.type && info.type.match('mf-fragment'));
+  }
+
+  /**
+   Get actual model fragment type, in case the attribute name is different
+   than the fragment type
+
+   @param {String} attribute attribute name for which you want fragment type
+   @returns {String} fragment type
+   */
+  fragmentType(attribute) {
+    let info = this.modelFragmentInfo(attribute);
+    let match = info.type.match('mf-fragment\\$(.*)');
+    return match[1];
   }
 
   /**
