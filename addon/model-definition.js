@@ -44,6 +44,16 @@ class ModelDefinition {
   }
 
   /**
+   Get model fragment info ( if it exists )
+   @param attribute
+   @returns {Object} or null if no fragment info
+   */
+  modelFragmentInfo(attribute) {
+    let modelClass = FactoryGuy.store.modelFor(this.modelName);
+    return Ember.get(modelClass, 'attributes').get(attribute);
+  }
+
+  /**
    Get actual model fragment type, in case the attribute name is different
    than the fragment type
 
